@@ -1,10 +1,20 @@
 use influxdb_iox_client::{connection::Connection, health};
 
+use influxdb_iox_client::connection::Builder;
+
 use snafu::{ResultExt, Snafu};
 
 #[tokio::main]
 async fn main() {
-    let builder = influxdb_iox_client::connection::Builder::default();
+    //    let builder = influxdb_iox_client::connection::Builder::default();
+
+    let connection = Builder::default()
+        .build("http://127.0.0.1:8081")
+        .await
+        .unwrap();
+
+    let x = check_health(connection).await;
+    println!("{:?}", x);
 }
 
 #[derive(Debug, Snafu)]
