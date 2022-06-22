@@ -3,7 +3,7 @@ async fn main() {
     use influxdb_iox_client::{connection::Builder, write::Client};
 
     let connection = Builder::default()
-        .build("http://127.0.0.1:8081")
+        .build("http://127.0.0.1:8082")
         .await
         .unwrap();
 
