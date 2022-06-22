@@ -1,0 +1,14 @@
+[package]
+name = "datafusion"
+version = "0.1.0"
+authors = ["Andrew Lamb <andrew@nerdnetworks.org>"]
+edition = "2021"
+description = "Re-exports datafusion at a specific version"
+
+[dependencies]
+
+# Rename to workaround doctest bug
+# Turn off optional datafusion features (e.g. don't get support for crypto functions or avro)
+upstream = { git = "https://github.com/apache/arrow-datafusion.git", rev="3cd62e91e724ce0d549a2571104c32bbf899c327", default-features = false, package = "datafusion" }
+datafusion-proto = { git = "https://github.com/apache/arrow-datafusion.git", rev="3cd62e91e724ce0d549a2571104c32bbf899c327" }
+workspace-hack = { path = "../workspace-hack"}

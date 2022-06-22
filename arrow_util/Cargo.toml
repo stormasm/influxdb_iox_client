@@ -1,0 +1,22 @@
+[package]
+name = "arrow_util"
+version = "0.1.0"
+authors = ["Andrew Lamb <andrew@nerdnetworks.org>"]
+edition = "2021"
+description = "Apache Arrow utilities"
+
+[dependencies]
+ahash = { version = "0.7.5", default-features = false }
+arrow = { version = "15.0.0", features = ["prettyprint"] }
+# used by arrow anyway (needed for printing workaround)
+chrono = { version = "0.4", default-features = false }
+comfy-table = { version = "6.0", default-features = false }
+datafusion = { path = "../datafusion" }
+hashbrown = "0.12"
+num-traits = "0.2"
+snafu = "0.7"
+workspace-hack = { path = "../workspace-hack"}
+
+[dev-dependencies]
+arrow-flight = "15.0.0"
+rand = "0.8.3"

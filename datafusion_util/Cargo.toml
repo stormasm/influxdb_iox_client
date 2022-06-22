@@ -1,0 +1,15 @@
+[package]
+name = "datafusion_util"
+version = "0.1.0"
+authors = ["Andrew Lamb <andrew@nerdnetworks.org>"]
+edition = "2021"
+description = "Datafusion utilities"
+
+[dependencies]
+datafusion = { path = "../datafusion" }
+futures = "0.3"
+observability_deps = { path = "../observability_deps" }
+pin-project = "1.0"
+tokio = { version = "1.19", features = ["parking_lot", "sync"] }
+tokio-stream = "0.1"
+workspace-hack = { path = "../workspace-hack"}

@@ -1,0 +1,25 @@
+[package]
+name = "mutable_batch_lp"
+version = "0.1.0"
+edition = "2021"
+description = "Conversion logic for line protocol -> MutableBatch"
+
+[dependencies]
+hashbrown = "0.12"
+influxdb_line_protocol = { path = "../influxdb_line_protocol" }
+mutable_batch = { path = "../mutable_batch" }
+schema = { path = "../schema" }
+snafu = "0.7"
+workspace-hack = { path = "../workspace-hack"}
+
+[dev-dependencies]
+arrow_util = { path = "../arrow_util" }
+assert_matches = "1.5.0"
+criterion = "0.3"
+
+[[bench]]
+name = "parse_lp"
+harness = false
+
+[lib]
+bench = false

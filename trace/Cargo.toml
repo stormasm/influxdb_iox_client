@@ -1,0 +1,15 @@
+[package]
+name = "trace"
+version = "0.1.0"
+authors = ["Raphael Taylor-Davies <r.taylordavies@googlemail.com>"]
+edition = "2021"
+description = "Distributed tracing support within IOx"
+
+[dependencies]
+chrono = { version = "0.4", default-features = false }
+observability_deps = { path = "../observability_deps" }
+parking_lot = "0.12"
+rand = "0.8"
+workspace-hack = { path = "../workspace-hack"}
+
+[dev-dependencies]

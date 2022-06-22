@@ -1,0 +1,23 @@
+[package]
+name = "query_functions"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+arrow = { version = "15.0.0", features = ["prettyprint"] }
+chrono = { version = "0.4", default-features = false }
+datafusion = { path = "../datafusion" }
+itertools = "0.10.2"
+lazy_static = "1.4.0"
+observability_deps = { path = "../observability_deps" }
+regex = "1"
+regex-syntax = "0.6.26"
+schema = { path = "../schema" }
+snafu = "0.7"
+workspace-hack = { path = "../workspace-hack"}
+
+[dev-dependencies]
+tokio = { version = "1.19", features = ["macros", "parking_lot"] }
+datafusion_util = { path = "../datafusion_util" }

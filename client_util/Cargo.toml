@@ -1,0 +1,16 @@
+[package]
+name = "client_util"
+version = "0.1.0"
+authors = ["Raphael Taylor-Davies <r.taylordavies@googlemail.com>"]
+description = "Shared code for IOx clients"
+edition = "2021"
+
+[dependencies]
+http = "0.2.8"
+thiserror = "1.0.31"
+tonic = { version = "0.7" }
+tower = "0.4"
+workspace-hack = { path = "../workspace-hack"}
+
+[dev-dependencies]
+tokio = { version = "1.19", features = ["macros", "parking_lot", "rt-multi-thread"] }

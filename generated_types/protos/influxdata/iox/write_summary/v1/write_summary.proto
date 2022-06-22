@@ -1,0 +1,20 @@
+syntax = "proto3";
+package influxdata.iox.write_summary.v1;
+option go_package = "github.com/influxdata/iox/write_summary/v1";
+
+// Represents a single logical write that was partitioned and shared
+// into multiple pieces in multiple sequencers (kafka partitions)
+message WriteSummary {
+  // per sequencer (kafka partition) information
+  repeated SequencerWrite sequencers = 1;
+}
+
+// Per sequencer (kafka partition) information aout what sequence
+// numbers contain part of a write
+message SequencerWrite {
+  // Unique sequencer ID (kafka partition).
+  int32 sequencer_id = 1;
+
+  // Which sequence numbers for this sequencer had data
+  repeated int64 sequence_numbers = 2;
+}

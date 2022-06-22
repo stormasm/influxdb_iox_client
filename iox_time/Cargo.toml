@@ -1,0 +1,12 @@
+[package]
+name = "iox_time"
+version = "0.1.0"
+edition = "2021"
+description = "Time functionality for IOx"
+
+[dependencies]
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+parking_lot = "0.12"
+workspace-hack = { path = "../workspace-hack"}
+
+[dev-dependencies]
