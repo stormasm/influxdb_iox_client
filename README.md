@@ -1,1 +1,6 @@
-# iox-examples
+This is the influxdb_iox_client and all its associated crates...
+along with some working examples
+
+as opposed to 
+[ioxsql](https://github.com/stormasm/iox_sql_v00)
+which pulls in more crates because it is a superset of **influxdb_iox_client** along with the **clap_blocks** crate and all of its associated dependencies...
