@@ -9,6 +9,6 @@ async fn main() {
 
     let mut client = Client::new(connection);
 
-    let x = client.check_storage().await.expect("check_arrow failure");
+    let x = client.check_storage().await.expect("check_storage failure");
     println!("{:?}", x);
 }
