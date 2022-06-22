@@ -26,6 +26,7 @@ bytes = "1.0"
 futures-util = { version = "0.3", optional = true }
 prost = "0.10"
 rand = "0.8.3"
+snafu = "0.7"
 thiserror = "1.0.31"
 tonic = { version = "0.7" }
 
