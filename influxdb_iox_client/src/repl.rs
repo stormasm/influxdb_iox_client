@@ -1,4 +1,4 @@
-use std::{borrow::Cow, convert::TryInto, path::PathBuf, sync::Arc, time::Instant};
+use std::{sync::Arc, time::Instant};
 
 use arrow::{
     array::{ArrayRef, Int64Array, StringArray},
@@ -139,7 +139,7 @@ impl Repl {
     }
 
     pub fn use_database(&mut self, db_name: String) {
-        info!(%db_name, "setting current database");
+        debug!(%db_name, "setting current database");
         println!("You are now in remote mode, querying database {}", db_name);
         self.set_query_engine(QueryEngine::Remote(db_name));
     }
@@ -168,21 +168,6 @@ impl Repl {
         println!("{}", formatted_results);
         Ok(())
     }
-}
-
-fn is_exit_command(line: &str) -> bool {
-    let line = line.trim_end().to_lowercase();
-    line == "quit" || line == "exit"
-}
-
-/// Return the location of the history file (defaults to $HOME/".iox_sql_history")
-fn history_file() -> PathBuf {
-    let mut buf = match std::env::var("HOME") {
-        Ok(home) => PathBuf::from(home),
-        Err(_) => PathBuf::new(),
-    };
-    buf.push(".iox_sql_history");
-    buf
 }
 
 /// Runs the specified `query` and returns the record batches of the result
