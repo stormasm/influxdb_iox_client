@@ -10,7 +10,7 @@ use snafu::{ResultExt, Snafu};
 use crate::{connection::Connection, flight::generated_types::ReadInfo, format::QueryOutputFormat};
 
 #[derive(Debug, Snafu)]
-pub(crate) enum Error {
+pub enum Error {
     #[snafu(display("Error loading remote state: {}", source))]
     LoadingRemoteState {
         source: Box<dyn std::error::Error + Send + Sync + 'static>,
@@ -32,7 +32,7 @@ pub(crate) enum Error {
     RunningRemoteQuery { source: crate::flight::Error },
 }
 
-pub(crate) type Result<T, E = Error> = std::result::Result<T, E>;
+pub type Result<T, E = Error> = std::result::Result<T, E>;
 
 #[derive(Debug)]
 enum QueryEngine {
@@ -99,7 +99,7 @@ impl Repl {
     }
 
     // Run a command against the currently selected remote database
-    async fn run_sql(&mut self, sql: String) -> Result<()> {
+    pub async fn run_sql(&mut self, sql: String) -> Result<()> {
         let start = Instant::now();
 
         let batches = match &mut self.query_engine {
@@ -149,7 +149,7 @@ impl Repl {
     }
 
     /// Sets the output format to the specified format
-    pub(crate) fn set_output_format<S: AsRef<str>>(&mut self, requested_format: S) -> Result<()> {
+    pub fn set_output_format<S: AsRef<str>>(&mut self, requested_format: S) -> Result<()> {
         let requested_format = requested_format.as_ref();
 
         self.output_format = requested_format

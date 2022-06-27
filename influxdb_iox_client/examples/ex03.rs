@@ -14,4 +14,11 @@ async fn main() {
     // let mut client = Client::new(connection);
 
     let mut repl = Repl::new(connection);
+
+    let x = repl
+        .run_sql("select * from h2o_temperature".to_string())
+        .await
+        .expect("run_sql");
+
+    println!("{:?}", x);
 }
