@@ -15,6 +15,8 @@ async fn main() {
 
     let mut repl = Repl::new(connection);
 
+    repl.use_database("postgresql:///iox_shared".to_string());
+
     let x = repl
         .run_sql("select * from h2o_temperature".to_string())
         .await

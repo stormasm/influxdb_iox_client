@@ -35,7 +35,7 @@ pub enum Error {
 pub type Result<T, E = Error> = std::result::Result<T, E>;
 
 #[derive(Debug)]
-enum QueryEngine {
+pub enum QueryEngine {
     /// Run queries against the named database on the remote server
     Remote(String),
 }
@@ -138,13 +138,13 @@ impl Repl {
         }
     }
 
-    fn use_database(&mut self, db_name: String) {
+    pub fn use_database(&mut self, db_name: String) {
         info!(%db_name, "setting current database");
         println!("You are now in remote mode, querying database {}", db_name);
         self.set_query_engine(QueryEngine::Remote(db_name));
     }
 
-    fn set_query_engine(&mut self, query_engine: QueryEngine) {
+    pub fn set_query_engine(&mut self, query_engine: QueryEngine) {
         self.query_engine = Some(query_engine)
     }
 
