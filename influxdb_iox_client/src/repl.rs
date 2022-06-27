@@ -34,6 +34,7 @@ pub(crate) enum Error {
 
 pub(crate) type Result<T, E = Error> = std::result::Result<T, E>;
 
+#[derive(Debug)]
 enum QueryEngine {
     /// Run queries against the named database on the remote server
     Remote(String),
@@ -41,7 +42,8 @@ enum QueryEngine {
 
 /// Captures the state of the repl, gathers commands and executes them
 /// one by one
-pub(crate) struct Repl {
+#[derive(Debug)]
+pub struct Repl {
     /// Connection to the server
     connection: Connection,
 
@@ -60,7 +62,7 @@ pub(crate) struct Repl {
 
 impl Repl {
     /// Create a new Repl instance, connected to the specified URL
-    pub(crate) fn new(connection: Connection) -> Self {
+    pub fn new(connection: Connection) -> Self {
         let namespace_client = crate::namespace::Client::new(connection.clone());
         let flight_client = crate::flight::Client::new(connection.clone());
 
