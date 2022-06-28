@@ -12,12 +12,12 @@ async fn main() {
     let mut repl = Repl::new(connection);
 
     repl.use_database("bananas".to_string());
-    // let _output_format = repl.set_output_format("csv");
+    let _output_format = repl.set_output_format("csv");
 
-    let x = repl
+    let _x = repl
         .run_sql("select * from cpu".to_string())
         .await
         .expect("run_sql");
 
-    println!("{:?}", x);
+    //println!("{:?}", x);
 }
