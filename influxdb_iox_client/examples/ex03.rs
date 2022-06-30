@@ -11,7 +11,12 @@ async fn main() {
 
     let mut repl = Repl::new(connection);
 
-    repl.use_database("postgresql:///iox_shared".to_string());
+    let dbname = std::env::var("INFLUXDB_IOX_CATALOG_DSN").unwrap();
+
+    repl.use_database(dbname);
+
+    // repl.use_database("postgresql:///iox_shared".to_string());
+
     // let _output_format = repl.set_output_format("csv");
 
     let x = repl
