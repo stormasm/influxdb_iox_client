@@ -1,7 +1,6 @@
 use tokio::runtime::Runtime;
 
 fn main() -> Result<(), std::io::Error> {
-    //fn main() {
     use influxdb_iox_client::{connection::Builder, health::Client};
 
     let num_threads: Option<usize> = None;
