@@ -45,9 +45,11 @@ pub enum QueryEngine {
 #[derive(Debug)]
 pub struct Repl {
     /// Connection to the server
+    #[allow(dead_code)]
     connection: Connection,
 
     /// Client for interacting with IOx namespace API
+    #[allow(dead_code)]
     namespace_client: crate::namespace::Client,
 
     /// Client for running sql
@@ -78,6 +80,7 @@ impl Repl {
     }
 
     // print all namespaces to the output
+    #[allow(dead_code)]
     async fn list_namespaces(&mut self) -> Result<()> {
         let namespaces = self
             .namespace_client
