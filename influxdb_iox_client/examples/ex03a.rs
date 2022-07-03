@@ -15,7 +15,7 @@ async fn main() {
     let _output_format = repl.set_output_format("csv");
 
     let _x = repl
-        .run_sql("select * from cpu".to_string())
+        .print_sql("select * from cpu".to_string())
         .await
         .expect("run_sql");
 

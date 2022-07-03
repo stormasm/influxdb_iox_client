@@ -102,7 +102,27 @@ impl Repl {
     }
 
     // Run a command against the currently selected remote database
-    pub async fn run_sql(&mut self, sql: String) -> Result<()> {
+    pub async fn run_sql(&mut self, sql: String) -> Result<String> {
+        let batches = match &mut self.query_engine {
+            None => {
+                println!("Error: no database selected.");
+                println!("Hint: Run USE DATABASE <dbname> to select database");
+                return Ok("Error: no database selected".to_string());
+            }
+            Some(QueryEngine::Remote(db_name)) => {
+                info!(%db_name, %sql, "Running sql on remote database");
+
+                scrape_query(&mut self.flight_client, db_name, &sql).await?
+            }
+        };
+
+        let result_str = self.get_results(&batches)?;
+
+        Ok(result_str)
+    }
+
+    // Run a command against the currently selected remote database
+    pub async fn print_sql(&mut self, sql: String) -> Result<()> {
         let start = Instant::now();
 
         let batches = match &mut self.query_engine {
@@ -160,6 +180,16 @@ impl Repl {
             .context(SettingFormatSnafu { requested_format })?;
         println!("Set output format format to {}", self.output_format);
         Ok(())
+    }
+
+    /// Prints to the specified output format
+    fn get_results(&self, batches: &[RecordBatch]) -> Result<String> {
+        let formatted_results = self
+            .output_format
+            .format(batches)
+            .context(FormattingResultsSnafu)?;
+        println!("{}", formatted_results);
+        Ok(formatted_results)
     }
 
     /// Prints to the specified output format

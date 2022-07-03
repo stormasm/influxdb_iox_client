@@ -20,7 +20,7 @@ async fn main() {
     // let _output_format = repl.set_output_format("csv");
 
     let x = repl
-        .run_sql("select * from h2o_temperature".to_string())
+        .print_sql("select * from h2o_temperature".to_string())
         .await
         .expect("run_sql");
 
